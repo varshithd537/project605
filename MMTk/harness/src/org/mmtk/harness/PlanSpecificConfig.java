@@ -215,6 +215,7 @@ public class PlanSpecificConfig {
       addExpectedSpaces("non-moving");
       addExpectedSpaces("sm-code");
       addExpectedSpaces("lg-code");
+      addExpectedSpaces("mark-sweep");
     }
 
     /**
