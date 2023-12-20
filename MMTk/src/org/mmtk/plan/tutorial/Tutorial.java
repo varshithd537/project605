@@ -41,6 +41,10 @@ public class Tutorial extends StopTheWorld {
   //public static final ImmortalSpace msSpace = new ImmortalSpace("mark-sweep", VMRequest.create());
   public static final int MARK_SWEEP = msSpace.getDescriptor();
 
+  public static final CopySpace nurserySpace = new CopySpace("nursery", false, VMRequest.highFraction(0.15f));
+  public static final int NURSERY = nurserySpace.getDescriptor();
+  
+
 
   /*****************************************************************************
    * Instance variables
@@ -121,9 +125,7 @@ public class Tutorial extends StopTheWorld {
     return super.willNeverMove(object);
   }
   
-  public static final CopySpace nurserySpace = new CopySpace("nursery", false, VMRequest.highFraction(0.15f));
-  public static final int NURSERY = nurserySpace.getDescriptor();
-  
+
   @Override
   public int getCollectionReserve() {
 	  return nurserySpace.reservedPages() + super.getCollectionReserve();

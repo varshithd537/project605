@@ -221,7 +221,6 @@ public class PlanSpecificConfig {
       addExpectedSpaces("sm-code");
       addExpectedSpaces("lg-code");
       addExpectedSpaces("ms");
-      addExpectedSpaces("nursery");
     }
 
     /**
