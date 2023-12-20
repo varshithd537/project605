@@ -1,0 +1,68 @@
+Project Deployment Instructions
+
+Cloning and Branch Selection
+
+Clone the repository:
+git clone https://github.com/varshithd537/project605.git
+Switch to the marksweep branch: git checkout marksweep  
+
+Building the Project
+
+Build the Garbage Collector with the specified plan: bin/buildit localhost BaseBaseTutorial  
+This compiles the GC and outputs the file in the “dist” folder.
+
+Run the Garbage Collector with a sample HelloWorld program:
+dist/BaseBaseTutorial_x86_64_linux/rvm -X:gc:verbose=3 HelloWorld  
+Use -X:gc:verbose to enable verbose logging and observe data movement.
+
+
+Testing with MMTk-harness
+
+Build MMTk Harness test tools:
+
+ant mmtk-harness  
+The built jar file is located at “target/mmtk/“.
+
+Run MMTk Harness with script files and optional arguments: java -jar target/mmtk/mmtk-harness.jar <script-file> [options...]   
+Test script files are located in “MMTk/harness/test-scripts/“.
+
+Example test execution:
+java -jar mmtk-harness.jar MMTk/harness/test-scripts/Alignment.script plan=MS  
+
+Use the wrapper script for comprehensive testing: bin/test-mmtk [options...]  
+Results are outputted in “results/mmtk”.
+
+Test against a specific plan: bin/test-mmtk -plan = Tutorial 
+
+Dacapo Benchmark Suite
+
+* The Dacapo benchmark suite jar file is provided in the repository.
+Usage
+java -jar dacapo-<version>.jar [options ...] [benchmarks ...]
+Options include callback class, help, input data size, measurement methodology, and debugging.
+    -c <callback>           Use class <callback> to bracket benchmark runs
+    -h                      Print this help
+    -i                      Display benchmark information
+    -s small|default|large  Size of input data
+
+Measurement methodology options
+    -converge               Allow benchmark times to converge before timing
+    -max_iterations <n>     Run a max of n iterations (default 20)
+    -variance <pct>         Target coefficient of variation (default 3.0)
+    -window <n>             Measure variance over n runs (default 3)
+    -n <iter>               Run the benchmark <iter> times
+
+Debugging options (for benchmark suite maintainers)
+    -debug                  Verbose debugging information
+    -ignoreValidation       Don't halt on validation failure
+    -noDigestOutput         Turn off SHA1 digest of stdout/stderr
+    -preserve               Preserve output files (debug)
+    -v                      Verbose output
+    -validationReport       Report digests, line counts etc
+
+Example Commands
+Run a benchmark with Jikes RVM: jikesrvm -Xmx512M -jar dacapo.jar [benchmark_name]
+Use a specific benchmark, like xalan: dist/BaseBaseTutorial_x86_64-linux/rvm -jar dacapo-2006-10.jar xalan 
+
+
+For detailed commands and result screenshots, refer to the provided report.
