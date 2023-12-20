@@ -93,6 +93,15 @@ public class PlanSpecificConfig {
         new PlanSpecific("org.mmtk.plan.nogc.NoGC")
         .addExpectedSpaces("default"),
         "NoGC");
+    // register(
+    //     new PlanSpecific("org.mmtk.plan.tutorial.Tutorial")
+    //     .addExpectedSpaces("mark-sweep","nursery"),
+    //     "Tutorial","ImplementedMarkSweep");
+    register(
+      new PlanSpecific("org.mmtk.plan.tutorial.Tutorial")
+      .addExpectedSpaces("ms","nursery")
+      , "Tutorial");
+
     register(
         new PlanSpecific("org.mmtk.plan.poisoned.Poisoned")
         .addExpectedSpaces("ms"),
@@ -125,6 +134,18 @@ public class PlanSpecificConfig {
         new PlanSpecific("org.mmtk.plan.stickyms.StickyMS")
         .addExpectedSpaces("ms"),
         "StickyMS");
+    register(
+        new PlanSpecific("org.mmtk.plan.regionalcopy.RegionalCopy")
+        .addExpectedSpaces("rc"),
+        "RegionalCopy");
+    register(
+        new PlanSpecific("org.mmtk.plan.concurrent.marksweep.CMS")
+            .addExpectedSpaces("ms"),
+        "CMS");
+    register(
+        new PlanSpecific("org.mmtk.plan.concurrent.concmark.ConcMark")
+            .addExpectedSpaces("mr"),
+        "ConcMark");
   }
 
   /**
@@ -199,6 +220,8 @@ public class PlanSpecificConfig {
       addExpectedSpaces("non-moving");
       addExpectedSpaces("sm-code");
       addExpectedSpaces("lg-code");
+      addExpectedSpaces("ms");
+      addExpectedSpaces("nursery");
     }
 
     /**
